@@ -1,0 +1,121 @@
+package com.aihubmax.features.free_ai
+
+enum class FreeAvailabilityStatus(val labelFa: String, val labelEn: String) {
+    FREE("رایگان", "Free"),
+    FREE_TIER("پلن رایگان", "Free Tier"),
+    FREE_CREDITS("اعتبار رایگان", "Free Credits"),
+    TRIAL("آزمایشی", "Trial"),
+    PAID("پولی", "Paid"),
+    UNKNOWN("نامشخص", "Unknown")
+}
+
+data class FreeAiCatalogItem(
+    val id: String,
+    val modelName: String,
+    val providerId: String,
+    val providerName: String,
+    val capabilities: List<String>,
+    val status: FreeAvailabilityStatus,
+    val freeLimitSummaryFa: String,
+    val freeLimitSummaryEn: String,
+    val signupRequirementsFa: String,
+    val signupRequirementsEn: String,
+    val requiresBankCard: Boolean,
+    val rateLimit: String,
+    val usageCap: String,
+    val overagePricing: String,
+    val lastCheckedDate: String,
+    val officialApiUrl: String,
+    val apiKeyUrl: String,
+    val docsUrl: String,
+    val bestForTag: String
+)
+
+object VerifiedFreeAiCatalog {
+    val entries: List<FreeAiCatalogItem> = listOf(
+        FreeAiCatalogItem(
+            id = "gemini-free-tier",
+            modelName = "Gemini 2.5 Flash / Flash-Lite",
+            providerId = "gemini",
+            providerName = "Google AI Studio (Gemini API)",
+            capabilities = listOf("Chat", "Persian", "Vision", "Coding", "Audio", "Search Grounding"),
+            status = FreeAvailabilityStatus.FREE_TIER,
+            freeLimitSummaryFa = "ورودی و خروجی رایگان در Free Tier با محدودیت RPM/RPD",
+            freeLimitSummaryEn = "Free input/output tokens on Free Tier with RPM/RPD limits",
+            signupRequirementsFa = "حساب Google (بدون نیاز به کارت بانکی برای Free Tier)",
+            signupRequirementsEn = "Google Account (no credit card required for Free Tier)",
+            requiresBankCard = false,
+            rateLimit = "Per-minute & per-day model limits (see AI Studio docs)",
+            usageCap = "Subject to Google AI Studio Free Tier quotas",
+            overagePricing = "Upgrade to Paid Tier (from $0.25–$0.30 / 1M input tokens)",
+            lastCheckedDate = "2026-11-12",
+            officialApiUrl = "https://aistudio.google.com/docs/pricing",
+            apiKeyUrl = "https://aistudio.google.com/app/apikey",
+            docsUrl = "https://aistudio.google.com/docs/rate-limits",
+            bestForTag = "Best Persian & Multimodal Free Tier"
+        ),
+        FreeAiCatalogItem(
+            id = "groq-free-plan",
+            modelName = "Llama 3.3 70B / 8B & Whisper",
+            providerId = "groq",
+            providerName = "Groq Cloud",
+            capabilities = listOf("Chat", "Coding", "STT (Whisper)", "High Speed"),
+            status = FreeAvailabilityStatus.FREE_TIER,
+            freeLimitSummaryFa = "پلن رایگان با سرعت بسیار بالا و سهمیه روزانه مجزا برای هر مدل",
+            freeLimitSummaryEn = "Free Plan with ultra-fast inference and per-model daily quotas",
+            signupRequirementsFa = "ثبت‌نام رایگان در Groq Console بدون کارت بانکی",
+            signupRequirementsEn = "Free Groq Console account without credit card",
+            requiresBankCard = false,
+            rateLimit = "RPM/TPM per model (e.g., ~30 RPM)",
+            usageCap = "1,000 RPD (70B) / 14,400 RPD (8B) / 2,000 RPD (Whisper)",
+            overagePricing = "Developer Plan pay-as-you-go after upgrade",
+            lastCheckedDate = "2026-11-12",
+            officialApiUrl = "https://console.groq.com/docs/rate-limits",
+            apiKeyUrl = "https://console.groq.com/keys",
+            docsUrl = "https://console.groq.com/docs/models",
+            bestForTag = "Best Speed & Free Whisper STT"
+        ),
+        FreeAiCatalogItem(
+            id = "openrouter-free-router",
+            modelName = "openrouter/free & :free Models",
+            providerId = "openrouter",
+            providerName = "OpenRouter",
+            capabilities = listOf("Chat", "Coding", "Vision", "Open Source Models"),
+            status = FreeAvailabilityStatus.FREE,
+            freeLimitSummaryFa = "دسترسی $0 به مدل‌های دارای پسوند :free و روتر openrouter/free",
+            freeLimitSummaryEn = "$0 per-token access to :free variants and openrouter/free router",
+            signupRequirementsFa = "حساب OpenRouter بدون نیاز به کارت بانکی",
+            signupRequirementsEn = "OpenRouter account without credit card",
+            requiresBankCard = false,
+            rateLimit = "20 RPM",
+            usageCap = "50 RPD (increases to 1,000 RPD after purchasing credits)",
+            overagePricing = "$0 for :free models; pay-per-token for paid models",
+            lastCheckedDate = "2026-11-12",
+            officialApiUrl = "https://openrouter.ai/openrouter/free",
+            apiKeyUrl = "https://openrouter.ai/keys",
+            docsUrl = "https://openrouter.ai/docs/guides/routing/routers/free-router",
+            bestForTag = "Best Free Open-Source Model Router"
+        ),
+        FreeAiCatalogItem(
+            id = "huggingface-inference",
+            modelName = "Hugging Face Inference Providers",
+            providerId = "huggingface",
+            providerName = "Hugging Face",
+            capabilities = listOf("Chat", "Image", "Video", "Embeddings"),
+            status = FreeAvailabilityStatus.PAID,
+            freeLimitSummaryFa = "حساب رایگان اعتبار Inference تضمینی ندارد (پرداخت به‌ازای مصرف؛ PRO شامل $2 اعتبار ماهانه)",
+            freeLimitSummaryEn = "Free accounts pay-as-you-go (PRO $9/mo includes $2 monthly credits)",
+            signupRequirementsFa = "حساب Hugging Face + تنظیم روش پرداخت برای مصرف Providerها",
+            signupRequirementsEn = "Hugging Face account + billing for provider pass-through",
+            requiresBankCard = true,
+            rateLimit = "Varies by underlying provider",
+            usageCap = "Pay-as-you-go ($2/mo included on PRO)",
+            overagePricing = "Provider pass-through rates with no markup",
+            lastCheckedDate = "2026-11-12",
+            officialApiUrl = "https://huggingface.co/docs/inference-providers/en/pricing",
+            apiKeyUrl = "https://huggingface.co/settings/tokens",
+            docsUrl = "https://huggingface.co/docs/inference-providers/en/index",
+            bestForTag = "Hub & Multi-Provider Pass-Through"
+        )
+    )
+}
