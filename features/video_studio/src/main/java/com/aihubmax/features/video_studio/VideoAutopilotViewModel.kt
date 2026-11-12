@@ -70,10 +70,8 @@ class VideoAutopilotViewModel @Inject constructor(
 
         val prompt = when (state.currentStage) {
             1 -> "Create a concise Creative Brief (Target Audience, Goal, Visual Style, Key Message) in Persian for this 60s video topic: ${state.topic}"
-            2 -> "Write a 60-second Persian Voiceover Script & Scene Narration based on this Creative Brief:
-${state.briefText.ifBlank { state.topic }}"
-            else -> "Break this video script into a 6-scene Storyboard with visual prompts and duration (seconds):
-${state.scriptText.ifBlank { state.topic }}"
+            2 -> "Write a 60-second Persian Voiceover Script & Scene Narration based on this Creative Brief:\n${state.briefText.ifBlank { state.topic }}"
+            else -> "Break this video script into a 6-scene Storyboard with visual prompts and duration (seconds):\n${state.scriptText.ifBlank { state.topic }}"
         }
 
         viewModelScope.launch {

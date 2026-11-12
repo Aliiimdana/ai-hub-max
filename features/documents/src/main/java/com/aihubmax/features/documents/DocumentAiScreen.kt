@@ -117,10 +117,7 @@ class DocumentAiViewModel @Inject constructor(
                 "deepseek" -> "deepseek-chat"
                 else -> "gpt-4o-mini"
             }
-            val prompt = "${state.question}
-
-Document Content:
-${state.extractedText}"
+            val prompt = "${state.question}\n\nDocument Content:\n${state.extractedText}"
             when (val res = adapter.generateText(key, modelId, prompt)) {
                 is ChatInferenceResult.Success -> _uiState.update { it.copy(isAnalyzing = false, analysisOutput = res.text) }
                 is ChatInferenceResult.Failure -> _uiState.update { it.copy(isAnalyzing = false, analysisOutput = res.reason) }

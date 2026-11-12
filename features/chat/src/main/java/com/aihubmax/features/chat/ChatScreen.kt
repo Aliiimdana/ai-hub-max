@@ -85,15 +85,9 @@ fun ChatScreen(
             text = {
                 Text(
                     if (isPersian) {
-                        "Provider: ${pending.providerName}
-مدل: ${pending.modelId}
-وضعیت: ${pending.costNote}
-آیا درخواست ارسال شود؟"
+                        "Provider: ${pending.providerName}\nمدل: ${pending.modelId}\nوضعیت: ${pending.costNote}\nآیا درخواست ارسال شود؟"
                     } else {
-                        "Provider: ${pending.providerName}
-Model: ${pending.modelId}
-Note: ${pending.costNote}
-Proceed with request?"
+                        "Provider: ${pending.providerName}\nModel: ${pending.modelId}\nNote: ${pending.costNote}\nProceed with request?"
                     }
                 )
             },

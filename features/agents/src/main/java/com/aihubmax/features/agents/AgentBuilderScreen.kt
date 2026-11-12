@@ -118,17 +118,13 @@ class AgentBuilderViewModel @Inject constructor(
                 "deepseek" -> "deepseek-chat"
                 else -> "gpt-4o-mini"
             }
-            val fullPrompt = "Agent Role: ${state.agentName}
-Instructions: ${state.instructions}
-User Goal: ${state.goalInput}"
+            val fullPrompt = "Agent Role: ${state.agentName}\nInstructions: ${state.instructions}\nUser Goal: ${state.goalInput}"
             when (val res = adapter.generateText(key, modelId, fullPrompt)) {
                 is ChatInferenceResult.Success -> {
                     _uiState.update {
                         it.copy(
                             isRunning = false,
-                            workflowLog = "[2/2] Completed ($providerId / $modelId):
-
-${res.text}"
+                            workflowLog = "[2/2] Completed ($providerId / $modelId):\n\n${res.text}"
                         )
                     }
                 }

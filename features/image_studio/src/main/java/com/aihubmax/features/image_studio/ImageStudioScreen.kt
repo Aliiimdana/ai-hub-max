@@ -86,11 +86,9 @@ fun ImageStudioScreen(
             text = {
                 Text(
                     if (isPersian) {
-                        "Provider: ${state.selectedProviderId}
-تولید تصویر ممکن است شامل هزینه API باشد. ادامه می‌دهید؟"
+                        "Provider: ${state.selectedProviderId}\nتولید تصویر ممکن است شامل هزینه API باشد. ادامه می‌دهید؟"
                     } else {
-                        "Provider: ${state.selectedProviderId}
-Image generation may incur API charges. Proceed?"
+                        "Provider: ${state.selectedProviderId}\nImage generation may incur API charges. Proceed?"
                     }
                 )
             },
